@@ -1,6 +1,16 @@
 var appsetting = require('../Configurations/appsettings.json');
 const fetch = require("node-fetch");
 const RepoTakeCSharp = require('../Methods/RepoTakeCSharp');
+
+exports.Ping = function Ping(req, res) {
+
+    var pingRet = {
+        response: 'Ping!'
+    }
+    res.status(200).json(pingRet);
+};
+
+
 exports.GetUserTakeGit = function GetUserTakeGit(req, res) {
 
     var requestOptions = {
@@ -40,7 +50,7 @@ exports.GetReposTakeGit = function GetReposTakeGit(req, res) {
 };
 
 exports.GetReposCSharpTakeGit = function GetReposCSharpTakeGit(req, res) {
-    
+
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'
@@ -52,7 +62,7 @@ exports.GetReposCSharpTakeGit = function GetReposCSharpTakeGit(req, res) {
     )
         .then(response => response.json())
         .then(result => {
-            
+
             var filter = RepoTakeCSharp.FilterReposCSharp(result);
             res.status(200).json(filter);
         })

@@ -4,9 +4,12 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
 var app = express();
-var port = 3000;
+//DSV
+// var port = 3000;
+// app.use(morgan('dev'));
+//PRD
+app.use(morgan('prd'));
 
-app.use(morgan('dev'));
 app.use(express.static('client'));
 
 
@@ -23,6 +26,9 @@ app.use(bodyParser.json());
 
 app.use('/PauloAlmeida', routes);
 
-app.listen(port);
-console.log("Running app on port port. Visit: http://localhost:" + port + "/");
+//DSV
+// app.listen(port);
+// console.log("Running app on port port. Visit: http://localhost:" + port + "/");
+//PRD
+app.listen(process.env.PORT, () => console.log(`Express started`));
 

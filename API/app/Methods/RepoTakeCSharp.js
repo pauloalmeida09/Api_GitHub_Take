@@ -13,7 +13,7 @@ exports.FilterReposCSharp = (repos) => {
             return languageCSharp
         } else {
             sortedDateCSharp = languageCSharp.slice().sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
-            sortedDateCSharp.slice(0, 5).reverse();
+            sortedDateCSharp.slice(0, 5);
             return sortedDateCSharp;
         }
     } catch (err) {

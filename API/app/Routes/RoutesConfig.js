@@ -5,6 +5,8 @@ const router = require('express').Router();
 
 router.post('/ApiTake/Token', AuthenticationController.Token);
 
+
+router.get('/ApiTake/Ping', GitTakeBlipController.Ping);
 router.get('/ApiTake/User', AuthenticationMethods.CheckToken, GitTakeBlipController.GetUserTakeGit);
 router.get('/ApiTake/Repos', AuthenticationMethods.CheckToken, GitTakeBlipController.GetReposTakeGit);
 router.get('/ApiTake/ReposCSharp', AuthenticationMethods.CheckToken, GitTakeBlipController.GetReposCSharpTakeGit);
