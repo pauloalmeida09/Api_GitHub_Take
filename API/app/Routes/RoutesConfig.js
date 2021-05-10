@@ -1,8 +1,12 @@
 const GitTakeBlipController = require('../Controllers/GitTakeBlipController');
-var router = require('express').Router();
+const AuthenticationController = require('../Controllers/AutheticatioController');
+const AuthenticationMethods = require('../Methods/Authetication');
+const router = require('express').Router();
 
-router.get('/ApiTake/User', GitTakeBlipController.GetUserTakeGit);
-router.get('/ApiTake/Repos', GitTakeBlipController.GetReposTakeGit);
-router.get('/ApiTake/ReposCSharp', GitTakeBlipController.GetReposCSharpTakeGit);
+router.post('/ApiTake/Token', AuthenticationController.Token);
+
+router.get('/ApiTake/User', AuthenticationMethods.CheckToken, GitTakeBlipController.GetUserTakeGit);
+router.get('/ApiTake/Repos', AuthenticationMethods.CheckToken, GitTakeBlipController.GetReposTakeGit);
+router.get('/ApiTake/ReposCSharp', AuthenticationMethods.CheckToken, GitTakeBlipController.GetReposCSharpTakeGit);
 
 module.exports = router;
